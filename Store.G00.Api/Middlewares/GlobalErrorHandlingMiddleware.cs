@@ -52,6 +52,7 @@ namespace Store.G00.Api.Middlewares
             response.StatusCode = ex switch
             {
                 NotFoundException => StatusCodes.Status404NotFound,
+                BadRequestException => StatusCodes.Status400BadRequest,
                 _ => context.Response.StatusCode = StatusCodes.Status500InternalServerError
             };
 
