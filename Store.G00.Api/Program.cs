@@ -29,6 +29,8 @@ namespace Store.G00.Api
             await app.ConfigureMiddlewares();
 
             app.Run();
+
+
         }
     }
 }
