@@ -27,6 +27,7 @@ namespace Persistence
             services.AddScoped<IDbInitializer, DbInitializer>(); // Allow DI of DbInitializer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped<ICacheRepository, CacheRepository>();
 
             services.AddSingleton<IConnectionMultiplexer>((ServiceProvider) =>
             {
