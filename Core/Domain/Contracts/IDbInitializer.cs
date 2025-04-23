@@ -9,5 +9,7 @@ namespace Domain.Contracts
     public interface IDbInitializer  // Migration , Update Db , Data Seeding ( 2y 7aga Na2sa Ht3mlha)
     {
         Task InitializeAsync();
+        Task InitializeIdentityAsync();
+
     }
 }
