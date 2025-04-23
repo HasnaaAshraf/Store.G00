@@ -29,7 +29,7 @@ namespace Store.G00.Api.Middlewares
                 // Log Exception
                 _logger.LogError(ex, ex.Message);
 
-                // 1.Set Status Code For response
+              
                 await HandlingErrorAsync(context, ex);
 
             }
@@ -37,6 +37,7 @@ namespace Store.G00.Api.Middlewares
 
         private static async Task HandlingErrorAsync(HttpContext context, Exception ex)
         {
+            // 1.Set Status Code For response
             // 2.Set Content Type Code For Response 
             // 3.Response Object (Body)
             // 4.return Response 
