@@ -161,9 +161,15 @@ namespace Persistence
                 await _userManager.CreateAsync(superAdminUser,"P@ssW0rd");
                 await _userManager.CreateAsync(AdminUser,"P@ssW0rd");
 
-                await _userManager.AddToRoleAsync(superAdminUser, "SuperAdmin");
-                await _userManager.AddToRoleAsync(AdminUser, "Admin");
+                if (await _roleManager.RoleExistsAsync("SuperAdmin"))
+                {
+                    await _userManager.AddToRoleAsync(superAdminUser, "SuperAdmin");
+                }
 
+                if (await _roleManager.RoleExistsAsync("Admin"))
+                {
+                    await _userManager.AddToRoleAsync(superAdminUser, "Admin");
+                }
             }
 
 
