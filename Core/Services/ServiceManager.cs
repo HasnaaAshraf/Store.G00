@@ -30,5 +30,7 @@ namespace Services
 
         public IAuthService AuthService { get; } = new AuthService(userManager,options);
 
+        public IOrderService OrderService { get; } = new OrderService(mapper,unitOfWork,basketRepository);
+
     }
 }
