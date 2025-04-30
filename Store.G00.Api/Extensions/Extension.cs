@@ -8,6 +8,11 @@ using Domain.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Persistence.Data;
 using Persistence.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Shared;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace Store.G00.Api.Extensions
 {
@@ -23,11 +28,11 @@ namespace Store.G00.Api.Extensions
 
             services.AddInfrastructureServices(configuration);
 
-            services.AddApplicationServices();
+            services.AddApplicationServices(configuration);
             services.AddIdentityServices();
 
             services.ConfigureServices();
-
+            services.ConfigureJwtServices(configuration);
 
             return services;
         }
@@ -38,6 +43,35 @@ namespace Store.G00.Api.Extensions
             services.AddControllers();
             return services;
         }
+        
+        private static IServiceCollection ConfigureJwtServices(this IServiceCollection services,IConfiguration configuration)
+        {
+
+            var JwtOptions = configuration.GetSection("JwtOptions").Get<JwtOptions>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+
+                    ValidIssuer = JwtOptions.Issuer,
+                    ValidAudience = JwtOptions.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtOptions.SecretKey)),
+
+                };
+
+            });
+
+            return services;
+        }
 
         private static IServiceCollection AddIdentityServices(this IServiceCollection services)
         {
@@ -46,7 +80,6 @@ namespace Store.G00.Api.Extensions
                     .AddEntityFrameworkStores<StoreIdenityDbContext>();
             return services;
         }
-
 
 
         private static IServiceCollection AddSwaggerServices(this IServiceCollection services)
@@ -104,6 +137,7 @@ namespace Store.G00.Api.Extensions
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
