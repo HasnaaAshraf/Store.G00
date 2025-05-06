@@ -19,7 +19,7 @@ namespace Services.Specifications
         {
             AddInclude(o => o.DeliveryMethod);
             AddInclude(o => o.OrderItems);
-            AddInclude(o => o.OrderDate);
+            AddOrderBy(o => o.OrderDate);
 
         }
 
