@@ -2,10 +2,7 @@
 {
     public class OrderItem : BaseEntity<Guid>
     {
-        public OrderItem()
-        {
-            
-        }
+        public OrderItem() { }
 
         public OrderItem(ProductInOrderItem product, int quantity, decimal price)
         {

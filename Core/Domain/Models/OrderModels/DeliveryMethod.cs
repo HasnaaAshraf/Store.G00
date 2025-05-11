@@ -1,5 +1,8 @@
-﻿namespace Domain.Models.OrderModels
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain.Models.OrderModels
 {
+    [Table("DeliveryMethods")]
     public class DeliveryMethod : BaseEntity<int>
     {
 
