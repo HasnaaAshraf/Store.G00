@@ -8,11 +8,7 @@ namespace Domain.Models.OrderModels
 {
     public class Order : BaseEntity<Guid>
     {
-        public Order()
-        {
-            
-        }
-
+        public Order() { }
         public Order(string userEmail, Address shippingAddress, ICollection<OrderItem> orderItems, DeliveryMethod deliveryMethod, decimal subTotal, string paymentIntentId)
         {
             Id = Guid.NewGuid();
@@ -37,7 +33,7 @@ namespace Domain.Models.OrderModels
 
         // Order Item 
 
-        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>(); // Navigational Property 
+        public ICollection<OrderItem> OrderItems { get; set; } = []; // Navigational Property 
 
 
         // Delivery Method 
