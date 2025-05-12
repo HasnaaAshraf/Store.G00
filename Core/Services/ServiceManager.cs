@@ -20,7 +20,8 @@ namespace Services
         IUnitOfWork unitOfWork ,
         UserManager<AppUser> userManager,
         IOptions<JwtOptions> options,
-        IMapper mapper) : IServiceManager
+        IMapper mapper,
+        IConfiguration configuration) : IServiceManager
     {
         public IProductService ProductService { get; } = new ProductService(unitOfWork,mapper);
 
@@ -32,5 +33,6 @@ namespace Services
 
         public IOrderService OrderService { get; } = new OrderService(mapper,unitOfWork,basketRepository);
 
+        public IPaymentService PaymentService { get; } = new PaymentService(basketRepository,unitOfWork,mapper,configuration);
     }
 }
