@@ -11,7 +11,7 @@ namespace Presentation
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PaymentController(IServiceManager serviceManager) : ControllerBase
+    public class PaymentsController(IServiceManager serviceManager) : ControllerBase
     {
         [HttpPost("{basketId}")]
         [Authorize]

@@ -47,7 +47,7 @@ namespace Presentation
         public async Task<IActionResult> GetCurrentUser()
         {
             var email = User.FindFirstValue(ClaimTypes.Email);
-            var result = serviceManager.AuthService.GetCurrentUserAsync(email);
+            var result = await serviceManager.AuthService.GetCurrentUserAsync(email);
             return Ok(result);
         }
 
@@ -57,7 +57,7 @@ namespace Presentation
         public async Task<IActionResult> GetCurrentUserAddress()
         {
             var email = User.FindFirstValue(ClaimTypes.Email);
-            var result = serviceManager.AuthService.GetCurrentUserAddressAsync(email);
+            var result = await serviceManager.AuthService.GetCurrentUserAddressAsync(email);
             return Ok(result);
         }
 
@@ -67,7 +67,7 @@ namespace Presentation
         public async Task<IActionResult> UpdateCurrentUser(AddressDto address)
         {
             var email = User.FindFirstValue(ClaimTypes.Email);
-            var result = serviceManager.AuthService.UpdateCurrentUserAddressAsync(address,email);
+            var result = await serviceManager.AuthService.UpdateCurrentUserAddressAsync(address,email);
             return Ok(result);
         }
 
