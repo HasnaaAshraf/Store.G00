@@ -16,7 +16,7 @@ using OrderProduct = Domain.Models.Product;
 
 namespace Services
 {
-    public class PaymentService(IBasketRepository basketRepository,
+    public class PaymentsService(IBasketRepository basketRepository,
                                 IUnitOfWork unitOfWork,
                                 IMapper mapper,
                                 IConfiguration configuration) : IPaymentService

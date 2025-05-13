@@ -12,7 +12,7 @@ namespace Presentation
     [ApiController]
     [Route("api/[controller]")]
  
-    public class BasketController(IServiceManager serviceManager) : ControllerBase
+    public class BasketsController(IServiceManager serviceManager) : ControllerBase
     {
         [HttpGet]  // Get : /api/Baskets/?id=eaf
         public async Task<IActionResult> GetBasketById(string id)
